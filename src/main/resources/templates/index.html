@@ -1,10 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Home', '/css/sobre.css')}"/>
 <body>
-$END$
+
+<header th:replace="~{fragments/header :: header(${autenticado})}"/>
+
+<div class="container">
+<main>
+
+        <section class="intro">
+            <h1>Bem-vindo ao Nosso Projeto!</h1>
+            <p>Nosso projeto combina inovação tecnológica com soluções personalizadas para melhorar a vida de nossos usuários. Estamos criando um dispositivo acessível, sustentável e moderno, com serviços premium que realmente fazem a diferença.</p>
+        </section>
+
+        <section class="features">
+            <h2>O que Oferecemos</h2>
+            <ul class="oferecemos">
+                <li>💡 <b>Tecnologia acessível</b>: Criada para se adaptar ao seu cotidiano.</li>
+                <li>🌱 <b>Sustentabilidade</b>: Impacto ambiental reduzido em cada produto.</li>
+                <li>🔒 <b>Segurança</b>: Proteção total dos seus dados e dispositivos.</li>
+                <li>⚙️ <b>Flexibilidade</b>: Soluções premium personalizadas para você.</li>
+            </ul>
+        </section>
+
+        <section class="team">
+            <h2>Conheça Nossa Equipe</h2>
+            <p>Somos um time apaixonado por tecnologia e inovação. Nosso objetivo é trazer produtos que transformem sua experiência no dia a dia. Em breve, você poderá saber mais sobre cada membro clicando <a href="/equipe">aqui</a>.</p>
+        </section>
+
+</main>
+</div>
+
+<footer th:replace="~{fragments/footer :: footer()}"/>
 </body>
 </html>

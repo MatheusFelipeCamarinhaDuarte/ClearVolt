@@ -1,0 +1,34 @@
+/* Paleta de cores */
+:root {
+    --cor-primaria: #4A90E2; /* Ajuste com base no briefing */
+    --cor-secundaria: #E94E77;
+    --cor-texto: #333333;
+    --cor-background: #f9f9f9;
+    --cor-header-footer: #222222;
+    --cor-header-footer-alternativo: #0052cc;
+    --cor-texto-header-footer: #ffffff;
+    --cor-botao: #4A90E2;
+    --cor-botao-hover: #357ABD;
+    --cor-link: #E94E77;
+}
+
+/* body global */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--cor-background);
+    color: var(--cor-texto);
+    line-height: 1.6;
+    display: flex;
+    min-height: 100vh; /* Altura mínima da página */
+    justify-content: center;
+    flex-direction: column;
+
+
+}
+
+/* Faz o conteúdo ocupar o espaço disponível */
+.container {
+    flex: 1;
+}

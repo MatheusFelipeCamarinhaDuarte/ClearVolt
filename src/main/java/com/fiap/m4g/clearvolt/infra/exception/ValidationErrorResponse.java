@@ -1,4 +1,4 @@
-package br.com.fiap.healy.infra.exception;
+package com.fiap.m4g.clearvolt.infra.exception;
 
 import lombok.Data;
 

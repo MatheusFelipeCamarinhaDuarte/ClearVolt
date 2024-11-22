@@ -1,0 +1,65 @@
+
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+main .bem-vindo {
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto-header-footer);
+    padding: 20px;
+    border-radius: 10px;
+}
+.dados-pessoais {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+.dados-pessoais ul {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dados-pessoais ul li {
+    display: flex;
+    padding-left: 20px;
+    align-items: center;
+}
+
+main .dados-pessoais ul,main .dados-pessoais li h3,main .dados-pessoais li p {
+    list-style: none;
+    padding-inline: 5px;
+    margin: 0px;
+}
+
+.config-icon {
+    color: gray;
+    font-size: 1.2rem;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.config-icon:hover {
+    color: black;
+}
+
+.cabecalho-dados-pessoais {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.delete-icon {
+    color: red;
+    font-size: 1.2rem;
+    margin: 0px 10px;
+    text-decoration: none;
+}
+.delete-icon:hover {
+    color: darkred;
+}

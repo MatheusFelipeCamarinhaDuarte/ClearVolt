@@ -1,10 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Perfil', '/css/perfil.css')}"/>
 <body>
-$END$
+
+<header th:replace="~{fragments/header :: header(${autenticado})}"/>
+
+<div class="container">
+    <main>
+        <section class="bem-vindo">
+            <h1 th:text="'Bem-vindo, ' + ${usuario.pessoa.nome} + '!'">Bem-vindo, Usuário!</h1>
+            <p>Gerencie seus dispositivos e conta com facilidade e segurança.</p>
+        </section>
+
+        <section class="dados-pessoais">
+            <div class="cabecalho-dados-pessoais">
+                <h2>Seus Dados</h2>
+                <a th:href="@{/perfil/alterar}" class="config-icon" title="Configurar"><i class="fas fa-cog"></i></a>
+            </div>
+            <ul>
+                <li><h3>Nome Completo: </h3><p><span th:text="${usuario.pessoa.nome} + ' ' + ${usuario.pessoa.sobrenome}">Nome</span></p></li>
+                <li><h3>CPF: </h3><p><span th:text="${usuario.pessoa.cpf}">CPF</span></p></li>
+                <li><h3>Data de Nascimento: </h3><p><span th:text="${nascimento}">DT Nasci</span></p></li>
+                <li><h3>Email: </h3><p><span th:text="${usuario.email}">Email</span></p></li>
+                <li><h3>Telefone: </h3><p><span th:text="${usuario.pessoa.telefone}">Telefone</span></p></li>
+                <li th:if="${dispositivos != null}">
+                    <h3>Quantidade de dispositivos: </h3><p><span th:text="${dispositivos.size()}">QTD</span></p>
+                    <a th:href="@{/dispositivos}" class="config-icon" title="Configurar"><i class="fas fa-cog"></i></a>
+                </li>
+                <li th:if="${dispositivos == null}">
+                    <h3>Quantidade de dispositivos: </h3><p><span>Nenhum Dispositivo cadastrado</span></p>
+                    <a th:href="@{/dispositivos}" class="config-icon" title="Configurar"><i class="fas fa-cog"></i></a>
+                </li>
+            </ul>
+            <a th:href="@{/perfil/excluir}" class="delete-icon" title="Excluir">Excluir conta<i class="fas fa-trash"></i></a></section>
+    </main>
+</div>
+
+<footer th:replace="~{fragments/footer :: footer()}"/>
 </body>
 </html>

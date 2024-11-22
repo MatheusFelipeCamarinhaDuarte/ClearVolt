@@ -1,10 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Novo dispositivo', '/css/formularios.css')}"/>
 <body>
-$END$
+
+<header th:replace="~{fragments/header :: header(${autenticado})}"/>
+
+<div class="container">
+    <main>
+        <div class="container-form">
+            <div class="cabecalho-form">
+                <nav class="back-arrow-group">
+                    <a th:href="@{/dispositivos}" class="back-arrow" title="Voltar"><i class="fas fa-arrow-left"></i></a>
+                </nav>
+                <h1>Adicionar Novo Dispositivo</h1>
+            </div>
+
+            <form th:object="${dispositivo}" action="/dispositivos/salvar" method="post">
+                <div class="input-group">
+                    <label for="nome">Nome do Dispositivo:</label>
+                    <input type="text" id="nome" name="nome" placeholder="Digite o nome" th:field="*{nome}" th:errorclass="is-invalid" required>
+                    <div class="invalid-feedback" th:errors="*{nome}"></div>
+                </div>
+                <div class="input-group">
+                    <label for="marca">Marca:</label>
+                    <input type="text" id="marca" name="marca" placeholder="Digite a marca do dispositivo" th:field="*{marca}" th:errorclass="is-invalid" required>
+                    <div class="invalid-feedback" th:errors="*{marca}"></div>
+
+                </div>
+                <div class="input-group">
+                    <label for="codigo">Codigo identificador:</label>
+                    <input type="text" id="codigo" name="codigo" placeholder="Digite o codigo identificador do dispositivo" th:field="*{identificador}" th:errorclass="is-invalid" required>
+                    <div class="invalid-feedback" th:errors="*{identificador}"></div>
+                </div>
+
+                <div class="input-group">
+                    <label for="status">Configuração:</label>
+                    <select id="status" name="status" th:field="*{configAtual}" th:errorclass="is-invalid" required>
+                        <option th:each="configs : ${lista_configs}"
+                                th:value="${configs.id}"
+                                th:text="${configs.nome}"  />
+                        <!--th:with="var = ${configs.nome.toLowerCase()}"-->
+
+                    </select>
+                    <div class="invalid-feedback" th:errors="*{configAtual}"></div>
+                </div>
+                <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+                <div class="form-actions">
+                    <button type="submit" class="btn salvar">Salvar</button>
+                    <button type="button" class="btn cancelar" onclick="window.location.href='/dispositivos'">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+</div>
+
+<footer th:replace="~{fragments/footer :: footer()}"/>
 </body>
 </html>

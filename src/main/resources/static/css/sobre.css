@@ -1,0 +1,25 @@
+
+/* Seções */
+main {
+    padding: 20px;
+}
+
+.intro, .features, .team {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #0052cc;
+}
+
+.oferecemos {
+    padding-left: 20px;
+}
+
+.oferecemos li {
+    margin-bottom: 10px;
+}

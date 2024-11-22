@@ -1,0 +1,59 @@
+/* Cabeçalho */
+header {
+    /*background-color: var(--cor-header-footer);*/
+    background-color: var(--cor-header-footer-alternativo);
+    color: white;
+    padding: 10px 0;
+}
+
+nav .menu {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav .menu li {
+    margin: 0 15px;
+}
+
+nav .menu li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+nav .menu li a:hover {
+    text-decoration: underline;
+}
+
+nav .menu li form {
+    margin: 0 15px;
+}
+
+nav .menu li form button {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+nav .menu li form button:hover {
+    text-decoration: underline;
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: var(--cor-primaria);
+    color: white;
+}
+
+footer .ver-equipe {
+    color: var(--cor-texto-header-footer);
+    text-decoration: none;
+    font-weight: bold;
+}

@@ -1,10 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Login', '/css/formularios.css')}"/>
 <body>
-$END$
+<div class="container-form">
+    <div class="cabecalho-form">
+        <nav class="back-arrow-group">
+            <a th:href="@{/home}" class="back-arrow" title="Voltar"><i class="fas fa-arrow-left"></i></a>
+        </nav>
+        <h1 class="titulo-text-form">Login</h1>
+    </div>
+
+    <div th:if="${param.cadastro}" class="sucesso">
+        <p><span>Cadastro realizado com sucesso! Agora, faça seu login.</span></p>
+    </div>
+
+    <div th:if="${param.erro}" class="erro">
+        <p><span>Usuário e/ou senha incorretos.</span></p>
+    </div>
+
+    <div th:if="${param.logout}" class="sucesso">
+        <p><span>Você saiu com sucesso.</span></p>
+    </div>
+
+
+
+    <form th:action="@{/login}" method="post">
+        <div class="input-group">
+            <label for="username">Usuário</label>
+            <input type="text" id="username" name="username" placeholder="Digite seu usuário" required>
+        </div>
+        <div class="input-group">
+            <label for="password">Senha</label>
+            <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+        </div>
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+        <button type="submit" class="btn-submit-form">Entrar</button>
+    </form>
+    <p class="register-text">
+        Não tem uma conta? <a th:href="@{/cadastro}">Cadastre-se</a>
+    </p>
+
+</div>
+
 </body>
+
 </html>

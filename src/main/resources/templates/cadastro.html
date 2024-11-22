@@ -1,10 +1,118 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Cadastro', '/css/formularios.css')}"/>
+
 <body>
-$END$
+
+<div class="container-form">
+    <div class="cabecalho-form">
+        <nav class="back-arrow-group">
+            <a th:href="@{/home}" class="back-arrow" title="Voltar"><i class="fas fa-arrow-left"></i></a>
+        </nav>
+        <h1 class="titulo-text-form">Cadastro de Usuário</h1>
+    </div>
+
+    <form th:object="${usuario}" action="/cadastrar" method="POST">
+        <div class="input-group">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" th:field="*{pessoa.nome}" th:errorclass="is-invalid" required>
+            <div class="invalid-feedback" th:errors="*{pessoa.nome}"></div>
+        </div>
+        <div class="input-group">
+            <label for="sobrenome">Sobrenome</label>
+            <input type="text" id="sobrenome" name="sobrenome" th:field="*{pessoa.sobrenome}" th:errorclass="is-invalid" required>
+            <div class="invalid-feedback" th:errors="*{pessoa.sobrenome}"></div>
+        </div>
+        <div class="input-group">
+            <label for="cpf">CPF</label>
+            <input type="text" id="cpf" name="cpf" th:field="*{pessoa.cpf}" th:errorclass="is-invalid" maxlength="14" required>
+            <div class="invalid-feedback" th:errors="*{pessoa.cpf}"></div>
+
+        </div>
+        <div class="input-group">
+            <label for="telefone">Telefone</label>
+            <input type="text" id="telefone" name="telefone" th:field="*{pessoa.telefone}" th:errorclass="is-invalid" maxlength="15" required>
+            <div class="invalid-feedback" th:errors="*{pessoa.telefone}"></div>
+        </div>
+        <div class="input-group">
+            <label for="nascimento">Data de Nascimento</label>
+            <input type="date" id="nascimento" name="nascimento" th:field="*{pessoa.dataDeNascimento}" th:errorclass="is-invalid" required>
+            <div class="invalid-feedback" th:errors="*{pessoa.dataDeNascimento}"></div>
+        </div>
+        <div class="input-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" th:field="*{email}" th:errorclass="is-invalid" required>
+            <div class="invalid-feedback" th:errors="*{email}"></div>
+        </div>
+        <div class="input-group">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" th:field="*{password}" th:errorclass="is-invalid" required>
+            <div class="invalid-feedback" th:errors="*{password}"></div>
+        </div>
+        <div class="input-group">
+            <label for="confirmarSenha">Confirmar Senha</label>
+            <input type="password" id="confirmarSenha" name="confirmarSenha" required>
+        </div>
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+        <button type="submit" class="btn-submit-form">Cadastrar</button>
+    </form>
+    <p class="register-text">
+        Já possui uma conta? <a th:href="@{/login}">Entrar</a>
+    </p>
+</div>
 </body>
+
+<script>
+    function validarSenha() {
+        var senha = document.getElementById("senha").value;
+        var confirmarSenha = document.getElementById("confirmarSenha").value;
+
+        if (senha !== confirmarSenha) {
+            alert("As senhas não coincidem!");
+            return false;
+        }
+        return true;
+    }
+
+    document.getElementById('cpf').addEventListener('input', function (e) {
+        let cpf = e.target.value;
+
+        cpf = cpf.replace(/\D/g, '');
+
+        if (cpf.length > 9) {
+            cpf = cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{0,2}).*/, '$1.$2.$3-$4');
+        } else if (cpf.length > 6) {
+            cpf = cpf.replace(/^(\d{3})(\d{3})(\d{0,3}).*/, '$1.$2.$3');
+        } else if (cpf.length > 3) {
+            cpf = cpf.replace(/^(\d{3})(\d{0,3}).*/, '$1.$2');
+        }
+
+        e.target.value = cpf;
+    });
+
+    document.getElementById('telefone').addEventListener('input', function (e) {
+        let telefone = e.target.value;
+
+        telefone = telefone.replace(/\D/g, '');
+
+        if (telefone.length > 10) {
+            telefone = telefone.replace(/^(\d{2})(\d{1})(\d{4})(\d{4}).*/, '($1) $2$3-$4');
+        } else if (telefone.length > 6) {
+            telefone = telefone.replace(/^(\d{2})(\d{1})(\d{0,4}).*/, '($1) $2$3');
+        } else if (telefone.length > 2) {
+            telefone = telefone.replace(/^(\d{2})(\d{0,5}).*/, '($1) $2');
+        } else {
+            telefone = telefone.replace(/^(\d*)/, '($1');
+        }
+
+        e.target.value = telefone;
+    });
+    document.querySelector("form").addEventListener("submit", function(event) {
+        if (!validarSenha()) {
+            event.preventDefault();
+        }
+    });
+</script>
+
+
 </html>

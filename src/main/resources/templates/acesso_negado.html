@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Home', '/css/sobre.css')}"/>
 <body>
-$END$
+
+<header th:replace="~{fragments/header :: header(${autenticado})}"/>
+
+<div class="container">
+    <main>
+        <h1>Acesso Negado! Você não tem permissão para está ação.</h1><br>
+        <a href="javascript:history.back()">Voltar</a>
+
+    </main>
+</div>
+
+<footer th:replace="~{fragments/footer :: footer()}"/>
 </body>
 </html>

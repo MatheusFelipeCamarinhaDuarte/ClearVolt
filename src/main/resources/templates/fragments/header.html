@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<header th:fragment="header(autenticado)">
+    <nav>
+        <ul class="menu" th:if="${autenticado == true}">
+            <li><a th:href="@{/home}">Inicio</a></li>
+            <li><a th:href="@{/perfil}">Perfil</a></li>
+            <li><a th:href="@{/dispositivos}">Dispositivos</a></li>
+            <li>
+                <form th:action="@{/logout}" method="post" style="display: inline;">
+                    <button type="submit" class="no-style-button" style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                        Sair
+                    </button>
+                </form>
+            </li>
+        </ul>
+        <ul class="menu" th:if="${autenticado == false || autenticado == null }">
+            <li><a th:href="@{/home}">Inicio</a></li>
+            <li><a th:href="@{/login}">Login</a></li>
+        </ul>
+
+    </nav>
+</header>

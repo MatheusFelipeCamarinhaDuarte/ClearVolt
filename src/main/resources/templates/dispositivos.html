@@ -1,10 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Dispositivos', '/css/dispositivos.css')}"/>
 <body>
-$END$
+
+<header th:replace="~{fragments/header :: header(${autenticado})}"/>
+
+<div class="container">
+    <main>
+        <section class="dispositivos">
+            <h1>Gerencie Seus Dispositivos</h1>
+            <button id="adicionar" class="btn" th:href="@{/dispositivos/novo}" onclick="window.location.href='/dispositivos/novo'">Adicionar Novo Dispositivo</button>
+
+            <section th:if="${dispositivos != null}">
+                <div th:each="dispo : ${dispositivos}" class="dispositivos-box">
+
+                        <div class="atributos-dispositivos">
+                            <h2 th:text="${dispo.nome}"></h2>
+                            <b>Marca:</b> <span th:text="${dispo.marca}"></span>
+                            <b>Identificador:</b> <span th:text="${dispo.identificador}"></span>
+                            <b>Configuração Atual:</b> <span th:text="${dispo.configAtual.nome}"></span>
+                        </div>
+                        <div class="action-buttons">
+                            <a th:href="@{/edit/{id}(id=${dispo.id})}" class="edit-icon" title="Editar"><i class="fas fa-edit"></i></a>
+                            <a th:href="@{/dispositivo/excluir/{id}(id=${dispo.id})}" class="delete-icon" title="Excluir"><i class="fas fa-trash"></i></a>
+                        </div>
+                </div>
+            </section>
+
+            <section th:if="${dispositivos == null}">
+                <h2>Você ainda não possui dispositivos cadastrados.</h2>
+                <p>Cadastre seu primeiro dispositivo!</p>
+            </section>
+        </section>
+    </main>
+</div>
+
+<footer th:replace="~{fragments/footer :: footer()}"/>
 </body>
 </html>
